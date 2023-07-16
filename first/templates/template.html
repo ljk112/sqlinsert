@@ -1,0 +1,29 @@
+<form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Name">
+    <input type="file" name="img">
+    <button type="submit">Upload</button>
+</form>
+<p/><p/><p/><p/><p/><p/><p/>
+
+<a href="../">첫 화면</a>
+<!-- template.html -->
+
+<h1>Clothes</h1>
+
+<div>
+  {% for number in numbers %}
+    {% if number == selected_number %}
+      <button style="background-color: yellow;">{{ number }}</button>
+    {% else %}
+      <a href="?number={{ number }}"><button>{{ number }}</button></a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% for cloth in clothes %}
+  <h3>{{ cloth.name }}</h3>
+  <img src="{{ cloth.img.url }}" alt="{{ cloth.name }}">
+{% empty %}
+  <p>No clothes found.</p>
+{% endfor %}
